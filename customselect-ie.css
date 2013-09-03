@@ -1,0 +1,10 @@
+
+/* fallback styling for IE */
+
+.cs_toggle, .cs_box {
+    border: 1px solid black;
+}
+
+.cs_box {
+    background: #d9d9d9;
+}
