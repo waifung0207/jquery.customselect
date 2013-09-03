@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>
+		<title>Custom Select</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" style="text/css" href="customselect.css" />
+
+		<style>
+		table {
+			border-collapse: collapse;
+		}
+		td, th {
+			border: 1px solid black;
+			padding: 20px;
+		}
+		td {
+			height: 300px;
+			vertical-align: top;
+		}
+		</style>
+
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="customselect.js"></script>
+
+		<script>
+		$(document).ready(function(){
+
+			$('#select_1').customselect();
+
+			$('#select_2').customselect({
+				animated : true,
+				url	: 'index.html?locale='
+			});
+
+			$('#select_3').customselect({
+				animated : true,
+				callback : function() {
+					var msg = 'You have selected ' + $(this).html() + ' ('+$(this).data('value')+').';
+					alert(msg);
+				}
+			});
+		});
+		</script>
+	</head>
+
+	<body>
+		<h2>Custom Select Example:</h2>
+
+		<table>
+			<tr>
+				<th>Before: </th>
+				<th>After (not animated): </th>
+				<th>After (animated and will redirect page): </th>
+				<th>After (animated and with callback): </th>
+			</tr>
+			<tr>
+				<td>
+					<select>
+						<option value="en">English</option>
+						<option value="zh-hans" selected>繁體中文</option>
+						<option value="zh-cn">简体中文</option>
+						<option value="ja">日本語</option>
+					</select>
+				</td>
+				<td>
+					<select id="select_1" class="customselect">
+						<option value="en">English</option>
+						<option value="zh-hans" selected>繁體中文</option>
+						<option value="zh-cn">简体中文</option>
+						<option value="ja">日本語</option>
+					</select>
+				</td>
+				<td>
+					<select id="select_2" class="customselect">
+						<option value="en">English</option>
+						<option value="zh-hans" selected>繁體中文</option>
+						<option value="zh-cn">简体中文</option>
+						<option value="ja">日本語</option>
+					</select>
+				</td>
+				<td>
+					<select id="select_3" class="customselect">
+						<option value="en">English</option>
+						<option value="zh-hans" selected>繁體中文</option>
+						<option value="zh-cn">简体中文</option>
+						<option value="ja">日本語</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
