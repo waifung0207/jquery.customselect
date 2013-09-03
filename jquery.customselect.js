@@ -42,7 +42,7 @@
 				var text = $(options[i]).html();
 
 				if (selected==value) {
-					cs_li.html('<a class="active" href="javascript:void(0);" value="'+value+'">'+text+'</a>');
+					cs_li.html('<a class="active" href="javascript:void(0);" data-value="'+value+'">'+text+'</a>');
 				} else {
 					cs_li.html('<a href="javascript:void(0);" data-value="'+value+'">'+text+'</a>');
 				}
