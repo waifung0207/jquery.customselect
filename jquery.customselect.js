@@ -2,6 +2,7 @@
 
     $.fn.customselect = function( options ) {
 
+    	var mOriginal = null;
     	var mMain = null;
 
 		// Establish our default settings
@@ -51,14 +52,13 @@
 
 			cs_box.html(cs_ul);
 
-			// replace original <select> element with new one
+			// hide original select box and create new one
 			cs_container.append(cs_toggle);
 			cs_container.append(cs_box);
-			$(this).replaceWith(cs_container);
-			// (optional) or hide original select box
-			//cs_container.insertAfter($(this));
-			//$(this).hide();
+			cs_container.insertAfter($(this));
+			$(this).hide();
 
+			mOriginal = $(this);
 			mMain = cs_container;
 
 			// toggle custom select box
@@ -94,15 +94,20 @@
 				return;
 			}
 
+	    	var new_value = $(this).data('value');
+
 		    if ( $.isFunction( mSettings.callback ) ) {
 		    	// custom callback
 		    	mSettings.callback.call( this );
 		    } else if ( mSettings.url ) {
 		    	// redirect location
-		    	var target_url = mSettings.url + $(this).data('value');
+		    	var target_url = mSettings.url + new_value;
 		    	document.location = target_url;
 		    	return;
 		    } 
+
+		    // also update hidden original select element
+		    mOriginal.val(new_value);
 
 	    	// change the selected value
 	    	mMain.find('.active').removeClass('active');
