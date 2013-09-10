@@ -9,26 +9,22 @@
 			<link rel="stylesheet" style="text/css" href="jquery.customselect-ie.css" />
 		<![endif]-->
 
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="jquery.customselect.js"></script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 		<style>
-		table {
-			border-collapse: collapse;
-		}
-		td, th {
-			border: 1px solid black;
-			padding: 20px;
-		}
-		td {
-			height: 300px;
-			vertical-align: top;
+		.col_2 {
+			height: 230px;
 		}
 		</style>
 
-		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="jquery.customselect.js"></script>
-
 		<script>
 		$(document).ready(function(){
-
 			$('#select_1').customselect();
 
 			$('#select_2').customselect({
@@ -48,56 +44,103 @@
 	</head>
 
 	<body>
-		<h2>Custom Select jQuery Plugin Example:</h2>
+		<div class="container">
+			<h2>Custom Select jQuery Plugin Examples:</h2>
 
-		<p><a href="https://github.com/waifung0207/jquery.customselect" target="_blank">Github</a></p>
+			<p><a href="https://github.com/waifung0207/jquery.customselect" target="_blank">Github Page</a></p>
 
-		<table>
-			<tr>
-				<th>Before: </th>
-				<th>After (not animated): </th>
-				<th>After (animated and will redirect page): </th>
-				<th>After (animated and with callback): </th>
-			</tr>
-			<tr>
-				<td>
-					<select>
-						<option value="en" selected>English</option>
-						<option value="zh-hans">繁體中文</option>
-						<option value="zh-cn">简体中文</option>
-						<option value="ja">日本語</option>
-					</select>
-				</td>
-				<td>
-					<select id="select_1" class="customselect">
-						<option value="en" selected>English</option>
-						<option value="zh-hans">繁體中文</option>
-						<option value="zh-cn">简体中文</option>
-						<option value="ja">日本語</option>
-					</select>
-				</td>
-				<td>
-					<select id="select_2" class="customselect">
-						<option value="en">English</option>
-						<option value="zh-hans" selected>繁體中文</option>
-						<option value="zh-cn">简体中文</option>
-						<option value="ja">日本語</option>
-					</select>
-				</td>
-				<td>
-					<select id="select_3" class="customselect">
-						<option value="en">English</option>
-						<option value="zh-hans">繁體中文</option>
-						<option value="zh-cn" selected>简体中文</option>
-						<option value="ja">日本語</option>
-					</select>
-				</td>
-			</tr>
-		</table>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
 
-		<footer>
-			<br/>
-			<p>By Michael Chan (website: <a href="http://waifung.hk" target="_blank">waifung.hk</a>)</p>
-		</footer>
+					<!-- header -->
+					<tr>
+						<th>Examples</th>
+						<th>Output</th>
+						<th>Code</th>
+					</tr>
+
+					<!-- original -->
+					<tr>
+						<td><i>Original</i></td>
+						<td>
+							<select>
+								<option value="en" selected>English</option>
+								<option value="zh-hans">繁體中文</option>
+								<option value="zh-cn">简体中文</option>
+								<option value="ja">日本語</option>
+							</select>
+						</td>
+						<td>-</td>
+					</tr>
+
+					<!-- Example 1 -->
+					<tr>
+						<td>Default (only layout change)</td>
+						<td class="col_2">
+							<select id="select_1" class="customselect">
+								<option value="en" selected>English</option>
+								<option value="zh-hans">繁體中文</option>
+								<option value="zh-cn">简体中文</option>
+								<option value="ja">日本語</option>
+							</select>
+						</td>
+						<td>
+							<strong>JavaScript:</strong><br/><br/>
+							<pre class="prettyprint lang-js">$('#select_1').customselect();</pre>
+						</td>
+					</tr>
+
+					<!-- Example 2 -->
+					<tr>
+						<td>Animated and with page redirection</td>
+						<td class="col_2">
+							<select id="select_2" class="customselect">
+								<option value="en">English</option>
+								<option value="zh-hans" selected>繁體中文</option>
+								<option value="zh-cn">简体中文</option>
+								<option value="ja">日本語</option>
+							</select>
+						</td>
+						<td>
+							<strong>JavaScript:</strong><br/><br/>
+							<pre class="prettyprint lang-js">$('#select_2').customselect({
+	animated : true,
+	url	: 'index.html?locale='
+});</pre>
+						</td>
+					</tr>
+
+					<!-- Example 3 -->
+					<tr>
+						<td>Animated and with callback</td>
+						<td class="col_2">
+							<select id="select_3" class="customselect">
+								<option value="en">English</option>
+								<option value="zh-hans">繁體中文</option>
+								<option value="zh-cn" selected>简体中文</option>
+								<option value="ja">日本語</option>
+							</select>
+						</td>
+						<td>
+							<strong>JavaScript:</strong><br/><br/>
+							<pre class="prettyprint lang-js">$('#select_3').customselect({
+	animated : true,
+	callback : function() {
+		var msg = 'You have selected ' + $(this).html() + ' ('+$(this).data('value')+').';
+		alert(msg);
+	}
+});
+							</pre>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="footer">
+				<br/>
+				<p>By Michael Chan (website: <a href="http://waifung.hk" target="_blank">waifung.hk</a>)</p>
+			</div>
+		</div>
 	</body>
 </html>
